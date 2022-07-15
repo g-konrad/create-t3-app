@@ -1,3 +1,4 @@
+// src/lib/trpc/router/example.ts
 import { createRouter } from "./context";
 import { z } from "zod";
 

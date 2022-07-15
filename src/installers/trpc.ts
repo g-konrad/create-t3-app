@@ -21,19 +21,19 @@ export const trpcInstaller: Installer = async ({
 
   const trpcAssetDir = path.join(PKG_ROOT, "template/addons/trpc");
 
-  const apiHandlerSrc = path.join(trpcAssetDir, "api-handler.ts");
-  const apiHandlerDest = path.join(projectDir, "src/pages/api/trpc/[trpc].ts");
+  const hooksSrc = path.join(trpcAssetDir, "hooks.ts");
+  const hooksDest = path.join(projectDir, "src/hooks.ts");
 
-  const utilsSrc = path.join(trpcAssetDir, "utils.ts");
-  const utilsDest = path.join(projectDir, "src/utils/trpc.ts");
+  const clientSrc = path.join(trpcAssetDir, "client.ts");
+  const clientDest = path.join(projectDir, "src/lib/trpc/client.ts");
 
   const contextFile = usingPrisma ? "prisma-context.ts" : "base-context.ts";
   const contextSrc = path.join(trpcAssetDir, contextFile);
-  const contextDest = path.join(projectDir, "src/server/router/context.ts");
+  const contextDest = path.join(projectDir, "src/lib/trpc/router/context.ts");
 
   const indexRouterFile = "index-router.ts";
   const indexRouterSrc = path.join(trpcAssetDir, indexRouterFile);
-  const indexRouterDest = path.join(projectDir, "src/server/router/index.ts");
+  const indexRouterDest = path.join(projectDir, "src/lib/trpc/router/index.ts");
 
   const exampleRouterFile = usingPrisma
     ? "example-prisma-router.ts"
@@ -41,12 +41,12 @@ export const trpcInstaller: Installer = async ({
   const exampleRouterSrc = path.join(trpcAssetDir, exampleRouterFile);
   const exampleRouterDest = path.join(
     projectDir,
-    "src/server/router/example.ts",
+    "src/lib/trpc/router/example.ts",
   );
 
   await Promise.all([
-    fs.copy(apiHandlerSrc, apiHandlerDest),
-    fs.copy(utilsSrc, utilsDest),
+    fs.copy(hooksSrc, hooksDest),
+    fs.copy(clientSrc, clientDest),
     fs.copy(contextSrc, contextDest),
     fs.copy(indexRouterSrc, indexRouterDest),
     fs.copy(exampleRouterSrc, exampleRouterDest),
