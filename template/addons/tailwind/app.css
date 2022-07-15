@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .welcome-p {
+    padding: 0 0 calc(100% * 495 / 2048) 0;
+  }
+}
