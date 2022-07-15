@@ -9,7 +9,6 @@ import { runPkgManagerInstall } from "../utils/runPkgManagerInstall.js";
 export const prismaInstaller: Installer = async ({
   projectDir,
   pkgManager,
-  packages,
   noInstall,
 }) => {
   await runPkgManagerInstall({
@@ -29,10 +28,7 @@ export const prismaInstaller: Installer = async ({
 
   const prismaAssetDir = path.join(PKG_ROOT, "template/addons/prisma");
 
-  const schemaSrc = path.join(
-    prismaAssetDir,
-    packages?.nextAuth.inUse ? "auth-schema.prisma" : "schema.prisma",
-  );
+  const schemaSrc = path.join(prismaAssetDir, "schema.prisma");
   const schemaDest = path.join(projectDir, "prisma/schema.prisma");
 
   const clientSrc = path.join(prismaAssetDir, "client.ts");

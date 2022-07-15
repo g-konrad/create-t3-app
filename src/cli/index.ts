@@ -23,7 +23,7 @@ interface CliResults {
 
 const defaultOptions: CliResults = {
   appName: DEFAULT_APP_NAME,
-  packages: ["nextAuth", "prisma", "tailwind", "trpc"],
+  packages: ["prisma", "tailwind", "trpc"],
   flags: {
     noGit: false,
     noInstall: false,
@@ -75,21 +75,9 @@ export const runCli = async () => {
   // FIXME: TEMPORARY WARNING WHEN USING YARN 3. SEE ISSUE #57
   if (process.env.npm_config_user_agent?.startsWith("yarn/3")) {
     logger.warn(`  WARNING: It looks like you are using Yarn 3. This is currently not supported,
-  and likely to result in a crash. Please run create-t3-app with another
+  and likely to result in a crash. Please run create-skt3-app with another
   package manager such as pnpm, npm, or Yarn Classic.
   See: https://github.com/t3-oss/create-t3-app/issues/57`);
-  }
-
-  // FIXME: TEMPORARY WARNING WHEN USING NODE 18. SEE ISSUE #59
-  if (process.versions.node.startsWith("18")) {
-    logger.warn(`  WARNING: You are using Node.js version 18. This is currently not compatible with Next-Auth.
-  If you want to use Next-Auth, switch to a previous version of Node, e.g. 16 (LTS).
-  If you have nvm installed, use 'nvm install --lts' to switch to the latest LTS version of Node.
-    `);
-
-    cliResults.packages = cliResults.packages.filter(
-      (val) => val !== "nextAuth",
-    );
   }
 
   // Needs to be seperated outside the if statement to correctly infer the type as string | undefined
@@ -146,10 +134,7 @@ export const runCli = async () => {
             name: pkgName,
             checked: false,
             // FIXME: TEMPORARY WARNING WHEN USING NODE 18. SEE ISSUE #59
-            disabled:
-              pkgName === "nextAuth" && process.versions.node.startsWith("18")
-                ? "Node.js version 18 is currently not compatible with Next-Auth."
-                : false,
+            disabled: false,
           })),
       });
 
@@ -197,7 +182,9 @@ export const runCli = async () => {
       logger.warn(
         `${CREATE_T3_APP} needs an interactive terminal to provide options`,
       );
-      logger.info(`Bootstrapping a default t3 app in ./${cliResults.appName}`);
+      logger.info(
+        `Bootstrapping a default skt3 app in ./${cliResults.appName}`,
+      );
     } else {
       throw err;
     }

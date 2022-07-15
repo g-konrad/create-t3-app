@@ -13,18 +13,10 @@ export const trpcInstaller: Installer = async ({
   await runPkgManagerInstall({
     pkgManager,
     projectDir,
-    packages: [
-      "react-query",
-      "superjson",
-      "@trpc/server",
-      "@trpc/client",
-      "@trpc/next",
-      "@trpc/react",
-    ],
+    packages: ["superjson", "@trpc/server", "@trpc/client", "trpc-sveltekit"],
     devMode: false,
     noInstallMode: noInstall,
   });
-  const usingAuth = packages?.nextAuth.inUse;
   const usingPrisma = packages?.prisma.inUse;
 
   const trpcAssetDir = path.join(PKG_ROOT, "template/addons/trpc");
@@ -35,26 +27,11 @@ export const trpcInstaller: Installer = async ({
   const utilsSrc = path.join(trpcAssetDir, "utils.ts");
   const utilsDest = path.join(projectDir, "src/utils/trpc.ts");
 
-  const contextFile =
-    usingAuth && usingPrisma
-      ? "auth-prisma-context.ts"
-      : usingAuth && !usingPrisma
-      ? "auth-context.ts"
-      : !usingAuth && usingPrisma
-      ? "prisma-context.ts"
-      : "base-context.ts";
+  const contextFile = usingPrisma ? "prisma-context.ts" : "base-context.ts";
   const contextSrc = path.join(trpcAssetDir, contextFile);
   const contextDest = path.join(projectDir, "src/server/router/context.ts");
 
-  if (usingAuth) {
-    const authRouterSrc = path.join(trpcAssetDir, "auth-router.ts");
-    const authRouterDest = path.join(projectDir, "src/server/router/auth.ts");
-    await fs.copy(authRouterSrc, authRouterDest);
-  }
-
-  const indexRouterFile = usingAuth
-    ? "auth-index-router.ts"
-    : "index-router.ts";
+  const indexRouterFile = "index-router.ts";
   const indexRouterSrc = path.join(trpcAssetDir, indexRouterFile);
   const indexRouterDest = path.join(projectDir, "src/server/router/index.ts");
 
