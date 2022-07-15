@@ -32,12 +32,8 @@ export const prismaInstaller: Installer = async ({
   const schemaDest = path.join(projectDir, "prisma/schema.prisma");
 
   const clientSrc = path.join(prismaAssetDir, "client.ts");
-  const clientDest = path.join(projectDir, "src/server/db/client.ts");
+  const clientDest = path.join(projectDir, "src/lib/prisma/client.ts");
 
-  const sampleApiRouteSrc = path.join(prismaAssetDir, "sample-api.ts");
-  const sampleApiRouteDest = path.join(projectDir, "src/pages/api/examples.ts");
-
-  // add postinstall script to package.json
   const packageJsonPath = path.join(projectDir, "package.json");
 
   const packageJsonContent = fs.readJSONSync(packageJsonPath) as PackageJson;
@@ -46,7 +42,6 @@ export const prismaInstaller: Installer = async ({
   await Promise.all([
     fs.copy(schemaSrc, schemaDest),
     fs.copy(clientSrc, clientDest),
-    fs.copy(sampleApiRouteSrc, sampleApiRouteDest),
     fs.writeJSON(packageJsonPath, packageJsonContent, {
       spaces: 2,
     }),
