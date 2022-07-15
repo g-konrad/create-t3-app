@@ -11,7 +11,7 @@ export const selectLayoutFile = async ({
   projectDir,
   packages,
 }: SelectBoilerplateProps) => {
-  const layoutFileDir = path.join(PKG_ROOT, "template/studs/_layout");
+  const layoutFileDir = path.join(PKG_ROOT, "template/studs/__layout");
 
   const usingTrpc = packages.tailwind.inUse;
 
@@ -22,7 +22,7 @@ export const selectLayoutFile = async ({
 
   if (layoutFile !== "") {
     const appSrc = path.join(layoutFileDir, layoutFile);
-    const appDest = path.join(projectDir, "src/routes/_layout.svelte");
+    const appDest = path.join(projectDir, "src/routes/__layout.svelte");
     await fs.copy(appSrc, appDest);
   }
 };
