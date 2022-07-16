@@ -1,8 +1,8 @@
-const { z } = require("zod");
+import { z } from "zod";
 
 const envSchema = z.object({
   DATABASE_URL: z.string().url(),
   NODE_ENV: z.enum(["development", "test", "production"]),
 });
 
-module.exports.envSchema = envSchema;
+export default envSchema;
