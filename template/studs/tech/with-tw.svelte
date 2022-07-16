@@ -8,7 +8,7 @@
   <h2 class="text-lg text-gray-700">{name}</h2>
   <p class="text-sm text-gray-600">{description}</p>
   <a
-    class="text-sm text-yellow-500 underline decoration-dotted underline-offset-2 cursor-pointer mt-3"
+    class="text-sm text-amber-500 underline decoration-dotted underline-offset-2 cursor-pointer mt-3"
     href={documentation}
     target="_blank"
     rel="noreferrer"
