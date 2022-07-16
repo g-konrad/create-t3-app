@@ -44,7 +44,7 @@ export const selectTechFile = async ({
 
   if (techFile !== "") {
     const indexSrc = path.join(indexFileDir, techFile);
-    const indexDest = path.join(projectDir, "src/lib/tech.svelte");
+    const indexDest = path.join(projectDir, "src/lib/components/tech.svelte");
     await fs.copy(indexSrc, indexDest);
   }
 };

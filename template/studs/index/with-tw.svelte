@@ -3,7 +3,7 @@
 </script>
 
 <script lang="ts">
-  import Tech from "$lib/tech.svelte";
+  import Tech from "$lib/components/tech.svelte";
   import trpc from "$lib/trpc/client";
 
   const techs = [

@@ -1,37 +1,11 @@
-<script context="module" lang="ts">
-  export const prerender = true;
-</script>
-
 <script lang="ts">
-  import Tech from "$lib/tech.svelte";
-  import trpc from "$lib/trpc/client";
+  import Tech from "$lib/components/tech.svelte";
 
   const techs = [
-    {
-      name: "SvelteKit",
-      description: "The fastest way to build Svelte apps",
-      documentation: "https://kit.svelte.dev",
-    },
-    {
-      name: "TypeScript",
-      description:
-        "Strongly typed programming language that builds on JavaScript, giving you better tooling at any scale",
-      documentation: "https://www.typescriptlang.org",
-    },
-    {
-      name: "TailwindCSS",
-      description:
-        "Rapidly build modern websites without ever leaving your HTML",
-      documentation: "https://tailwindcss.com",
-    },
-    {
-      name: "tRPC",
-      description: "End-to-end typesafe APIs made easy",
-      documentation: "https://trpc.io",
-    },
+    { name: "SvelteKit", href: "https://kit.svelte.dev" },
+    { name: "tRPC", href: "https://trpc.io" },
+    { name: "TypeScript", href: "https://typescriptlang.org" },
   ];
-
-  const hello = trpc.query("hello");
 </script>
 
 <svelte:head>
@@ -40,29 +14,17 @@
   <link rel="icon" href="/favicon.ico" />
 </svelte:head>
 
-<div
-  class="w-screen min-h-screen flex flex-col justify-center items-center p-4 overflow-y-scroll"
->
-  <h2
-    class="text-[3rem] lg:text-[5rem] md:text-[5rem] font-extrabold text-gray-700"
-  >
-    Create <span class="text-orange-500">SKT3</span> App
-  </h2>
-  <p class="text-2xl text-gray-700">This stack uses</p>
-  <div
-    class="grid grid-cols-1 grid-rows-3 lg:grid-rows-2 md:grid-rows-2 justify-center items-center lg:grid-cols-2 md:grid-cols-2 gap-3 mt-3 pt-3 w-full lg:w-2/3 md:w-full"
-  >
-    {#each techs as { name, description, documentation }}
-      <Tech {name} {description} {documentation} />
-    {/each}
-  </div>
-  <div
-    class="pt-6 text-2xl text-yellow-500 flex justify-center items-center w-full"
-  >
-    {#await hello}
-      <p>Loading...</p>
-    {:then data}
-      <p>{data.greeting}</p>
-    {/await}
+<div>
+  <h1>
+    Create <span>SKT3</span> App
+  </h1>
+
+  <div>
+    <h3>This stack uses:</h3>
+    <ul>
+      {#each techs as { name, href }}
+        <Tech {name} {href} />
+      {/each}
+    </ul>
   </div>
 </div>
