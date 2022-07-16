@@ -28,23 +28,23 @@ export const selectLayoutFile = async ({
 };
 
 // This selects the proper index.tsx to be used that showcases the chosen tech
-export const selectCounterFile = async ({
+export const selectTechFile = async ({
   projectDir,
   packages,
 }: SelectBoilerplateProps) => {
-  const indexFileDir = path.join(PKG_ROOT, "template/studs/counter");
+  const indexFileDir = path.join(PKG_ROOT, "template/studs/tech");
 
   const usingTw = packages.tailwind.inUse;
 
-  let counterFile = "";
+  let techFile = "";
   // FIXME: auth showcase doesn't work with prisma since it requires more setup
   if (usingTw) {
-    counterFile = "with-tw.svelte";
+    techFile = "with-tw.svelte";
   }
 
-  if (counterFile !== "") {
-    const indexSrc = path.join(indexFileDir, counterFile);
-    const indexDest = path.join(projectDir, "src/lib/counter.svelte");
+  if (techFile !== "") {
+    const indexSrc = path.join(indexFileDir, techFile);
+    const indexDest = path.join(projectDir, "src/lib/tech.svelte");
     await fs.copy(indexSrc, indexDest);
   }
 };
