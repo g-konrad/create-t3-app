@@ -1,8 +1,8 @@
 import adapter from "@sveltejs/adapter-auto";
 import preprocess from "svelte-preprocess";
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import env from "./env";
+// Check that the app is being built with valid env vars
+import "./src/lib/env/index.js";
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {

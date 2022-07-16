@@ -3,7 +3,7 @@
  * This file is included in `/svelte.config.js` which ensures the app isn't built with invalid env vars.
  * It has to be a `.js`-file to be imported there.
  */
-import envSchema from "./env-schema";
+import envSchema from "./env-schema.js";
 
 const env = envSchema.safeParse(process.env);
 
