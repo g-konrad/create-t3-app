@@ -15,7 +15,7 @@ export const envVariblesInstaller: Installer = async ({
 
   switch (true) {
     case usingPrisma:
-      envFile = "env-prisma.js";
+      envFile = "env-prisma.ts";
       break;
   }
 
