@@ -6,7 +6,7 @@ import { scaffoldProject } from "./scaffoldProject.js";
 import {
   selectLayoutFile,
   selectIndexFile,
-  selectCounterFile,
+  selectTechFile,
 } from "./selectBoilerplate.js";
 
 interface CreateProjectOptions {
@@ -32,7 +32,7 @@ export const createProject = async ({
   // TODO: Look into using handlebars or other templating engine to scaffold without needing to maintain multiple copies of the same file
   await selectLayoutFile({ projectDir, packages });
   await selectIndexFile({ projectDir, packages });
-  await selectCounterFile({ projectDir, packages });
+  await selectTechFile({ projectDir, packages });
 
   return projectDir;
 };
