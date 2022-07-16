@@ -3,11 +3,7 @@ import path from "path";
 import { getUserPkgManager } from "../utils/getUserPkgManager.js";
 import { installPackages } from "./installPackages.js";
 import { scaffoldProject } from "./scaffoldProject.js";
-import {
-  selectLayoutFile,
-  selectIndexFile,
-  selectTechFile,
-} from "./selectBoilerplate.js";
+import { selectIndexFile, selectTechFile } from "./selectBoilerplate.js";
 
 interface CreateProjectOptions {
   projectName: string;
@@ -30,7 +26,6 @@ export const createProject = async ({
   await installPackages({ projectDir, pkgManager, packages, noInstall });
 
   // TODO: Look into using handlebars or other templating engine to scaffold without needing to maintain multiple copies of the same file
-  await selectLayoutFile({ projectDir, packages });
   await selectIndexFile({ projectDir, packages });
   await selectTechFile({ projectDir, packages });
 

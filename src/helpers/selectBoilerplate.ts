@@ -6,26 +6,6 @@ import { PKG_ROOT } from "../consts.js";
 type SelectBoilerplateProps = Required<
   Pick<InstallerOptions, "projectDir" | "packages">
 >;
-// This generates the _app.tsx file that is used to render the app
-export const selectLayoutFile = async ({
-  projectDir,
-  packages,
-}: SelectBoilerplateProps) => {
-  const layoutFileDir = path.join(PKG_ROOT, "template/studs/__layout");
-
-  const usingTrpc = packages.tailwind.inUse;
-
-  let layoutFile = "";
-  if (usingTrpc) {
-    layoutFile = "with-tw.svelte";
-  }
-
-  if (layoutFile !== "") {
-    const appSrc = path.join(layoutFileDir, layoutFile);
-    const appDest = path.join(projectDir, "src/routes/__layout.svelte");
-    await fs.copy(appSrc, appDest);
-  }
-};
 
 // This selects the proper index.tsx to be used that showcases the chosen tech
 export const selectTechFile = async ({
