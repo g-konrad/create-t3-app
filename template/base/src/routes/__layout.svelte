@@ -1,5 +1,6 @@
 <script lang="ts">
-	import '../app.css';
+	import "$lib/env"
+	import "../app.css";
 </script>
 
 <main>
