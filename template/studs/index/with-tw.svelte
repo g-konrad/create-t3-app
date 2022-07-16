@@ -12,7 +12,7 @@
 </svelte:head>
 
 <section class="flex flex-col justify-center items-center flex-1">
-  <h1 class="w-full">
+  <h1 class="text-center w-full">
     <span class="block relative w-full h-0 welcome-p">
       <picture>
         <source srcset="svelte-welcome.webp" type="image/webp" />
